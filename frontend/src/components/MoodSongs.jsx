@@ -34,7 +34,7 @@ const MoodSongs = () => {
                 </div>
                 <div className="play-pause-btn">
                     <i className="ri-pause-line"></i>
-                    <i class="ri-play-fill"></i>
+                    <i className="ri-play-fill"></i>
                 </div>
             </div>
         ))}    

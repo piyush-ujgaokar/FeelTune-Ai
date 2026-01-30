@@ -10,6 +10,9 @@ const songSchema=new mongoose.Schema({
     },
     songUrl:{
         type:String,
+    },
+    mood:{
+        type:String,
     }
 })
 
