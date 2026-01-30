@@ -4,12 +4,14 @@ import FacialExpression from './components/FacialExpression'
 import MoodSongs from './components/MoodSongs'
 
 function App() {
-  const [count, setCount] = useState(0)
+   const [Songs, setSongs] = useState([
+       
+    ])
 
   return (
     <>
-     <FacialExpression />
-     <MoodSongs/>
+     <FacialExpression setSongs={setSongs} />
+     <MoodSongs Songs={Songs}/>
     </>
   )
 }
