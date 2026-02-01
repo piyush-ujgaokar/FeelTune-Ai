@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import './moodSongs.css'
 
-const MoodSongs = ({Songs}) => {
+const MoodSongs = ({Songs=[]}) => {
 
         const [playingIndex, setPlayingIndex] = useState(null)
         const audioRef = useRef(new Audio())

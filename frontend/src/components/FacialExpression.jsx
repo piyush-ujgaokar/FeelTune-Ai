@@ -2,9 +2,12 @@ import React, { useRef, useEffect } from 'react'
 import * as faceapi from 'face-api.js';
 import './facialExpress.css'
 import axios from 'axios'
+import { useState } from 'react';
 
 const FacialExpression = ({setSongs}) => {
     const videoRef = useRef();
+    const [mood, setMood] = useState('')
+
     const loadModels=async ()=>{
      const MODEL_URL = '/models';
      await faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL);
@@ -22,12 +25,14 @@ const FacialExpression = ({setSongs}) => {
          })
      }
 
+     
      async function detectMood(){    
              const detections = await faceapi
              .detectAllFaces(videoRef.current, new faceapi.TinyFaceDetectorOptions())
              .withFaceExpressions();
              let mostProbaleExpression = 0
-             let _expression = ''
+             let _expression=''
+          
 
              if(!detections || detections.length === 0) {
                  console.log("No Face Detected");
@@ -41,10 +46,11 @@ const FacialExpression = ({setSongs}) => {
                      _expression = expression
                  }
              }
+             
+            setMood(_expression)
 
-         axios.get(`http://localhost:3000/songs?mood=${_expression}`)
+         axios.get(`feel-tune-ai-mfya.vercel.app/songs?mood=${_expression}`)
          .then((response)=>{
-            console.log(response.data);
             setSongs(response.data.songs)
          })
       }  
@@ -54,9 +60,12 @@ const FacialExpression = ({setSongs}) => {
 
         },[])
 
-
+        
 
   return (
+    <>
+     <h1 className='Mood'>Current Mood: {mood}</h1>
+   
     <div className='mood-element'>
        <video
         ref={videoRef}
@@ -67,6 +76,7 @@ const FacialExpression = ({setSongs}) => {
 
     <button className='detect-btn' onClick={detectMood}>Detect Mood</button>
     </div>
+     </>
   )
 }
 
