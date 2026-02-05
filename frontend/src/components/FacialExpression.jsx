@@ -49,7 +49,7 @@ const FacialExpression = ({setSongs}) => {
              
             setMood(_expression)
 
-         axios.get(`feel-tune-ai-mfya.vercel.app/songs?mood=${_expression}`)
+         axios.get(`http://localhost:3000/songs?mood=${_expression}`)
          .then((response)=>{
             setSongs(response.data.songs)
          })
