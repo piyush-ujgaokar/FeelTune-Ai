@@ -49,7 +49,7 @@ const FacialExpression = ({setSongs}) => {
              
             setMood(_expression)
 
-         axios.get(`http://localhost:3000/songs?mood=${_expression}`)
+         axios.get(`https://feeltune-ai.onrender.com/songs?mood=${_expression}`)
          .then((response)=>{
             setSongs(response.data.songs)
          })
